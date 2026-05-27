@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">　
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>MA & KAGE | Official Site</title>
     <style>
         /* 1. 究極のミニマリズムのための初期化 */
@@ -40,7 +40,7 @@
             scroll-snap-align: start;
         }
 
-        /* 3. 背景画像の調整（明るさ0.55・暗闇でフリーズしないよう初期表示を確保） */
+        /* 3. 背景画像の調整（高級パララックス演出） */
         .bg-image {
             position: absolute;
             top: 0;
@@ -50,13 +50,12 @@
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
+            background-attachment: fixed; /* 背景を固定してスクロールで動かす魔法 */
             filter: brightness(0.55) contrast(1.15);
             z-index: 1;
-            transform: scale(1);
-            transition: transform 0.8s ease;
         }
 
-        /* 4. テキストのオーバーレイ（真っ暗フリーズを防ぐため opacity: 1 をデフォルトに） */
+        /* 4. テキストのオーバーレイ */
         .content {
             position: relative;
             z-index: 2;
@@ -88,7 +87,7 @@
             letter-spacing: 0.4em;
         }
 
-        /* 6. 連絡先チャンネル（シンプルで美しい佇まい） */
+        /* 6. 連絡先チャンネル */
         .info-channels {
             font-size: 0.75rem;
             color: #888888;
@@ -123,7 +122,7 @@
 <body>
 
     <section id="hero">
-        <div class="bg-image" style="background-image: url('./縦長モノクロの小滝.png');"></div>
+        <div class="bg-image" style="background-image: url('./縦長モノクロの小滝 (1).png');"></div>
         <div class="scroll-line"></div>
     </section>
 
@@ -155,10 +154,28 @@
         <div class="scroll-line"></div>
     </section>
 
+    <section id="shade-interior">
+        <div class="bg-image" style="background-image: url('./tool_generated_ce0b37172a87415e8352eedd62e8c13f.png');"></div>
+        <div class="content">
+            <h1>INTERIOR SHADE</h1>
+            <p>Geometry of Wood and Light</p>
+        </div>
+        <div class="scroll-line"></div>
+    </section>
+
+    <section id="staircase">
+        <div class="bg-image" style="background-image: url('./Staircase in Shadow Light.png');"></div>
+        <div class="content">
+            <h1>LIGHT AND LINE</h1>
+            <p>The Architecture of Shadow</p>
+        </div>
+        <div class="scroll-line"></div>
+    </section>
+
     <section id="contact" style="background-color: #000000;">
         <div class="content">
             <h1>CONTACT</h1>
-            
+             
             <div class="info-channels">
                 <p>MAIL: <a href="mailto:info@ma-and-kage.com">info@ma-and-kage.com</a></p>
                 <p>INSTAGRAM: <a href="https://instagram.com/ma_and_kage" target="_blank">@ma_and_kage</a></p>
