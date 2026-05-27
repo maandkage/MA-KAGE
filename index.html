@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>MA & KAGE | Official Site</title>
     <style>
-        /* 1. 究極のミニマリズムのための初期化 */
+        /* 1. ミニマリズムのための初期化 */
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +21,7 @@
             overflow-x: hidden;
         }
 
-        /* 2. 1画面ごとに完結するセクション設定 */
+        /* 2. 1画面ごとにスクロールがピタッと止まる設定 */
         html {
             scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
@@ -52,13 +52,6 @@
             background-repeat: no-repeat;
             filter: brightness(0.55) contrast(1.15);
             z-index: 1;
-            /* 奥からじわっと広がるアニメーション */
-            animation: deepZoom 20s infinite alternate ease-in-out;
-        }
-
-        @keyframes deepZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
         }
 
         /* 4. テキストのオーバーレイ */
@@ -69,7 +62,7 @@
             padding: 0 20px;
         }
 
-        /* 5. 文字のサイズ（ミニマル・豆粒デザイン） */
+        /* 5. 文字のデザイン */
         h1 {
             font-size: 1.5rem;
             font-weight: 200;
@@ -93,7 +86,7 @@
             letter-spacing: 0.4em;
         }
 
-        /* 6. 連絡先チャンネル */
+        /* 6. 連絡先 */
         .info-channels {
             font-size: 0.75rem;
             color: #888888;
@@ -170,7 +163,7 @@
     </section>
 
     <section id="staircase">
-        <div class="bg-image" style="background-image: url('./Staircase%20in%20Shadow%20Light.png');"></div>
+        <div class="bg-image" style="background-image: url('./Staircase in Shadow Light.png');"></div>
         <div class="content">
             <h1>LIGHT AND LINE</h1>
             <p>The Architecture of Shadow</p>
