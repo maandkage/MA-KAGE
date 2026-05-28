@@ -25,6 +25,8 @@
             font-weight: 200;
             letter-spacing: 0.4em;
             overflow-x: hidden;
+            /* スマホでのガタつき防止 */
+            -webkit-text-size-adjust: 100%;
         }
 
         /* 2. 1画面ごとに完結するセクション設定 */
@@ -37,6 +39,8 @@
             position: relative;
             width: 100vw;
             height: 100vh;
+            /* スマホのツールバー対策で高さをしっかり固定 */
+            height: calc(var(--vh, 1vh) * 100);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -46,7 +50,7 @@
             scroll-snap-align: start;
         }
 
-        /* 3. 背景画像の調整（【復活】高級パララックス演出） */
+        /* 3. 背景画像の調整（スマホ対応版パララックス風） */
         .bg-image {
             position: absolute;
             top: 0;
@@ -56,9 +60,15 @@
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* 背景を固定してスクロールで動かす魔法の動き */
             filter: brightness(0.55) contrast(1.15);
             z-index: 1;
+        }
+
+        /* パソコン画面のときだけ、より高級感のあるパララックス（固定）を有効にする */
+        @media (min-width: 768px) {
+            .bg-image {
+                background-attachment: fixed;
+            }
         }
 
         /* 4. テキストのオーバーレイ */
@@ -67,37 +77,55 @@
             z-index: 2;
             text-align: center;
             padding: 0 20px;
+            width: 100%;
         }
 
         /* 5. 文字のサイズ（ミニマル・豆粒デザイン） */
         h1 {
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* スマホ用に少し最適化 */
             font-weight: 200;
-            margin-bottom: 30px; 
+            margin-bottom: 20px; 
             color: #ffffff;
             text-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
 
+        /* パソコンでは少し大きく */
+        @media (min-width: 768px) {
+            h1 { font-size: 1.5rem; margin-bottom: 30px; }
+        }
+
         p {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: #777777;
             text-transform: uppercase;
             letter-spacing: 0.5em;
         }
 
+        @media (min-width: 768px) {
+            p { font-size: 0.65rem; }
+        }
+
         .statement {
-            font-size: 1.1rem;
-            line-height: 3;
+            font-size: 0.9rem; /* スマホで1行に収まりやすく調整 */
+            line-height: 2.5;
             color: #cccccc;
             font-weight: 200;
-            letter-spacing: 0.4em;
+            letter-spacing: 0.3em;
+        }
+
+        @media (min-width: 768px) {
+            .statement { font-size: 1.1rem; line-height: 3; letter-spacing: 0.4em; }
         }
 
         /* 6. 連絡先チャンネル */
         .info-channels {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #888888;
-            line-height: 3; 
+            line-height: 2.5; 
+        }
+
+        @media (min-width: 768px) {
+            .info-channels { font-size: 0.75rem; line-height: 3; }
         }
 
         .info-channels a {
@@ -115,20 +143,29 @@
 
         .scroll-line {
             position: absolute;
-            bottom: 40px;
+            bottom: 30px;
             left: 50%;
             width: 1px;
-            height: 60px;
+            height: 40px;
             background: linear-gradient(to bottom, #333, transparent);
             z-index: 2;
+        }
+
+        @media (min-width: 768px) {
+            .scroll-line { bottom: 40px; height: 60px; }
         }
 
         /* 【追加】近日公開セクション用のスタイル */
         .coming-soon-text {
             font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
+            font-size: 1.0rem;
             color: #ffffff;
-            letter-spacing: 0.6em; /* さらに広めの字間で洗練さを */
+            letter-spacing: 0.5em;
+            line-height: 2;
+        }
+
+        @media (min-width: 768px) {
+            .coming-soon-text { font-size: 1.2rem; letter-spacing: 0.6em; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@200;400&family=Noto+Sans+JP:wght@100;300&display=swap" rel="stylesheet">
@@ -187,11 +224,11 @@
     </section>
 
     <section id="artisan">
-        <div class="bg-image" style="background-image: url('./artisan-placeholder.png'); background-color: #000000;"></div>
+        <div class="bg-image" style="background-image: url('./artisan-shadow.png');"></div>
         <div class="content">
             <p class="coming-soon-text">
                 UNVEILING SOON<br>
-                <span style="font-size: 0.7rem; color: #777777; letter-spacing: 0.4em;">The Hands of the Masters</span>
+                <span style="font-size: 0.65rem; color: #777777; letter-spacing: 0.3em;">The Hands of the Masters</span>
             </p>
         </div>
         <div class="scroll-line"></div>
@@ -208,5 +245,14 @@
         </div>
     </section>
 
+    <script>
+        const setVh = () => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        };
+        window.addEventListener('resize', setVh);
+        window.addEventListener('DOMContentLoaded', setVh);
+        setVh();
+    </script>
 </body>
 </html>
