@@ -11,7 +11,7 @@
     <meta name="keywords" content="MA & KAGE, MA&KAGE, マーアンドカゲ, 日本の職人技, ミニマリズム, ポートフォリオ">
 
     <style>
-        /* 1. 究極のミニマリズムのための初期化 */
+        /* 1. 初期化 */
         * {
             margin: 0;
             padding: 0;
@@ -48,34 +48,40 @@
             scroll-snap-align: start;
         }
 
-        /* 3. 背景画像の調整（スマホでも絶対に消えない＆動くパララックス） */
+        /* 3. 背景画像の調整（スマホで絶対にドアップにならない完全安全設定） */
         .bg-image {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-position: center;
+            background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
             filter: brightness(0.55) contrast(1.15);
             z-index: 1;
             
-            /* パソコンとスマホの一部で動く高級効果（バグるスマホは自動で安全な動きに切り替わります） */
-            background-attachment: fixed;
+            /* スマホでは固定（fixed）を絶対にせず、通常スクロールに固定 */
+            background-attachment: scroll !important;
         }
 
-        /* 4. テキストのオーバーレイ（リンクが100%反応する最前面設定） */
+        /* パソコン（大画面）の時だけ高級なパララックスを有効化 */
+        @media (min-width: 1024px) {
+            .bg-image {
+                background-attachment: fixed !important;
+            }
+        }
+
+        /* 4. テキストのオーバーレイ */
         .content {
             position: relative;
             z-index: 10; 
             text-align: center;
             padding: 0 20px;
             width: 100%;
-            pointer-events: auto; /* 文字やリンクを確実に触れるように */
         }
 
-        /* 5. 文字のサイズ（ミニマル・豆粒デザイン） */
+        /* 5. 文字のサイズ */
         h1 {
             font-size: 1.2rem;
             font-weight: 200;
@@ -167,12 +173,12 @@
 <body>
 
     <section id="hero">
-        <div class="bg-image" style="background-image: url('./縦長モノクロの小滝.png');"></div>
+        <div class="bg-image" style="background-image: url('./縦長モノクロの小滝.png?v=2');"></div>
         <div class="scroll-line"></div>
     </section>
 
     <section id="statement">
-        <div class="bg-image" style="background-image: url('./Sacred Void.png');"></div>
+        <div class="bg-image" style="background-image: url('./Sacred Void.png?v=2');"></div>
         <div class="content">
             <p class="statement" style="font-family: 'Cinzel', serif;">
                 Japanese Craftsmanship, Reimagined.
@@ -182,7 +188,7 @@
     </section>
 
     <section id="space">
-        <div class="bg-image" style="background-image: url('./Minimal Japanese Silence.png');"></div>
+        <div class="bg-image" style="background-image: url('./Minimal Japanese Silence.png?v=2');"></div>
         <div class="content">
             <h1>SILENCE</h1>
             <p>The Aesthetics of Absence</p>
@@ -191,7 +197,7 @@
     </section>
 
     <section id="craft">
-        <div class="bg-image" style="background-image: url('./Kumiko Shadow on Washi Paper.png');"></div>
+        <div class="bg-image" style="background-image: url('./Kumiko Shadow on Washi Paper.png?v=2');"></div>
         <div class="content">
             <h1>SHADE</h1>
             <p>Geometry of Wood and Light</p>
@@ -200,7 +206,7 @@
     </section>
 
     <section id="shade-interior">
-        <div class="bg-image" style="background-image: url('./interior-shade.png');"></div>
+        <div class="bg-image" style="background-image: url('./interior-shade.png?v=2');"></div>
         <div class="content">
             <h1>INTERIOR SHADE</h1>
             <p>Geometry of Wood and Light</p>
@@ -209,7 +215,7 @@
     </section>
 
     <section id="staircase">
-        <div class="bg-image" style="background-image: url('./Staircase in Shadow Light.png');"></div>
+        <div class="bg-image" style="background-image: url('./Staircase in Shadow Light.png?v=2');"></div>
         <div class="content">
             <h1>LIGHT AND LINE</h1>
             <p>The Architecture of Shadow</p>
@@ -218,7 +224,7 @@
     </section>
 
     <section id="artisan">
-        <div class="bg-image" style="background-image: url('./artisan-shadow.png');"></div>
+        <div class="bg-image" style="background-image: url('./artisan-shadow.png?v=2');"></div>
         <div class="content">
             <p class="coming-soon-text">
                 UNVEILING SOON<br>
