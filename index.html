@@ -25,7 +25,6 @@
             font-weight: 200;
             letter-spacing: 0.4em;
             overflow-x: hidden;
-            /* スマホでのガタつき防止 */
             -webkit-text-size-adjust: 100%;
         }
 
@@ -39,7 +38,6 @@
             position: relative;
             width: 100vw;
             height: 100vh;
-            /* スマホのツールバー対策で高さをしっかり固定 */
             height: calc(var(--vh, 1vh) * 100);
             display: flex;
             flex-direction: column;
@@ -50,25 +48,33 @@
             scroll-snap-align: start;
         }
 
-        /* 3. 背景画像の調整（スマホ対応版パララックス風） */
-        .bg-image {
+        /* 3. 背景画像の調整（スマホでもバグらない最強パララックス） */
+        .bg-wrap {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 1;
+            /* 画面からはみ出た画像部分を隠すマント */
+            clip: rect(0, auto, auto, 0);
+            clip-path: inset(0 0 0 0);
+        }
+
+        .bg-image {
+            position: fixed; /* これがあの魔法の動きの正体 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
             filter: brightness(0.55) contrast(1.15);
-            z-index: 1;
-        }
-
-        /* パソコン画面のときだけ、より高級感のあるパララックス（固定）を有効にする */
-        @media (min-width: 768px) {
-            .bg-image {
-                background-attachment: fixed;
-            }
+            /* スマホでfixedがバグるのを防ぐお守り */
+            transform: translate3d(0, 0, 0);
+            will-change: transform;
         }
 
         /* 4. テキストのオーバーレイ */
@@ -82,14 +88,13 @@
 
         /* 5. 文字のサイズ（ミニマル・豆粒デザイン） */
         h1 {
-            font-size: 1.2rem; /* スマホ用に少し最適化 */
+            font-size: 1.2rem;
             font-weight: 200;
             margin-bottom: 20px; 
             color: #ffffff;
             text-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
 
-        /* パソコンでは少し大きく */
         @media (min-width: 768px) {
             h1 { font-size: 1.5rem; margin-bottom: 30px; }
         }
@@ -106,7 +111,7 @@
         }
 
         .statement {
-            font-size: 0.9rem; /* スマホで1行に収まりやすく調整 */
+            font-size: 0.9rem;
             line-height: 2.5;
             color: #cccccc;
             font-weight: 200;
@@ -155,7 +160,6 @@
             .scroll-line { bottom: 40px; height: 60px; }
         }
 
-        /* 【追加】近日公開セクション用のスタイル */
         .coming-soon-text {
             font-family: 'Cinzel', serif;
             font-size: 1.0rem;
@@ -173,12 +177,12 @@
 <body>
 
     <section id="hero">
-        <div class="bg-image" style="background-image: url('./縦長モノクロの小滝.png');"></div>
+        <div class="bg-wrap"><div class="bg-image" style="background-image: url('./縦長モノクロの小滝.png');"></div></div>
         <div class="scroll-line"></div>
     </section>
 
     <section id="statement">
-        <div class="bg-image" style="background-image: url('./Sacred Void.png');"></div>
+        <div class="bg-wrap"><div class="bg-image" style="background-image: url('./Sacred Void.png');"></div></div>
         <div class="content">
             <p class="statement" style="font-family: 'Cinzel', serif;">
                 Japanese Craftsmanship, Reimagined.
@@ -188,7 +192,7 @@
     </section>
 
     <section id="space">
-        <div class="bg-image" style="background-image: url('./Minimal Japanese Silence.png');"></div>
+        <div class="bg-wrap"><div class="bg-image" style="background-image: url('./Minimal Japanese Silence.png');"></div></div>
         <div class="content">
             <h1>SILENCE</h1>
             <p>The Aesthetics of Absence</p>
@@ -197,7 +201,7 @@
     </section>
 
     <section id="craft">
-        <div class="bg-image" style="background-image: url('./Kumiko Shadow on Washi Paper.png');"></div>
+        <div class="bg-wrap"><div class="bg-image" style="background-image: url('./Kumiko Shadow on Washi Paper.png');"></div></div>
         <div class="content">
             <h1>SHADE</h1>
             <p>Geometry of Wood and Light</p>
@@ -206,7 +210,7 @@
     </section>
 
     <section id="shade-interior">
-        <div class="bg-image" style="background-image: url('./interior-shade.png');"></div>
+        <div class="bg-wrap"><div class="bg-image" style="background-image: url('./interior-shade.png');"></div></div>
         <div class="content">
             <h1>INTERIOR SHADE</h1>
             <p>Geometry of Wood and Light</p>
@@ -215,7 +219,7 @@
     </section>
 
     <section id="staircase">
-        <div class="bg-image" style="background-image: url('./Staircase in Shadow Light.png');"></div>
+        <div class="bg-wrap"><div class="bg-image" style="background-image: url('./Staircase in Shadow Light.png');"></div></div>
         <div class="content">
             <h1>LIGHT AND LINE</h1>
             <p>The Architecture of Shadow</p>
@@ -224,7 +228,7 @@
     </section>
 
     <section id="artisan">
-        <div class="bg-image" style="background-image: url('./artisan-shadow.png');"></div>
+        <div class="bg-wrap"><div class="bg-image" style="background-image: url('./artisan-shadow.png');"></div></div>
         <div class="content">
             <p class="coming-soon-text">
                 UNVEILING SOON<br>
@@ -239,20 +243,4 @@
             <h1>CONTACT</h1>
              
             <div class="info-channels">
-                <p>MAIL: <a href="mailto:info@ma-and-kage.com">info@ma-and-kage.com</a></p>
-                <p>INSTAGRAM: <a href="https://instagram.com/ma_and_kage" target="_blank">@ma_and_kage</a></p>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        const setVh = () => {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        };
-        window.addEventListener('resize', setVh);
-        window.addEventListener('DOMContentLoaded', setVh);
-        setVh();
-    </script>
-</body>
-</html>
+                <p>MAIL: <a href="mailto:info@ma-and-k
